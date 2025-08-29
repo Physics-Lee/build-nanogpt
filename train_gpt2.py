@@ -9,8 +9,10 @@ from torch.nn import functional as F
 from hellaswag import render_example, iterate_examples
 # -----------------------------------------------------------------------------
 
+# Causal Self-Attention
 class CausalSelfAttention(nn.Module):
 
+    # Causal Self-Attention
     def __init__(self, config):
         super().__init__()
         assert config.n_embd % config.n_head == 0
@@ -23,6 +25,7 @@ class CausalSelfAttention(nn.Module):
         self.n_head = config.n_head
         self.n_embd = config.n_embd
 
+    # Forward pass
     def forward(self, x):
         B, T, C = x.size() # batch size, sequence length, embedding dimensionality (n_embd)
         # calculate query, key, values for all heads in batch and move head forward to be the batch dim
